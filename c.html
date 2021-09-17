@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-image: url('snow.jpg');
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 50px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            border: none;
+            font-weight: bold;
+            color: white;
+            padding-top: 20px;
+            padding: 20px;
+            width: 200px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        
+        #increment-btn {
+            background-color: red;
+        }
+        
+        #save-btn {
+            background-color: green;
+        }
+        
+        #Save-Id {
+            color: white;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+
+<body>
+    <h1>People Entered</h1>
+    <h2 id="Counting">0</h2>
+    <button id="increment-btn" onclick="increment()">INCREMENT</button>
+    <button id="save-btn" onclick="save()">SAVE</button>
+    <p id="Save-Id">Previous Entries:</p>
+    <script>
+        let saveId = document.getElementById("Save-Id")
+        let countId = document.getElementById("Counting")
+        console.log(countId)
+        let count = 0
+        console.log(SaveId)
+
+        function increment() {
+            count += 1
+            countId.textContent = count
+        }
+
+        function save() {
+            let countStr = count + " - "
+            saveId.textContent += countStr
+            console.log(count)
+            countId.textContent = 0
+            count = 0
+        }
+    </script>
+
+</body>
+
+</html>
