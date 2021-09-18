@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-image: url('blackjack.jpg');
+            color: white;
+            text-align: center;
+            background-size: cover;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        
+        h1 {
+            color: goldenrod;
+        }
+        
+        #message-el {
+            font-family: cursive;
+        }
+        
+        button {
+            background-color: goldenrod;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            color: green;
+            width: 150px;
+            font-weight: bold;
+            border: none;
+            border-radius: 2px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLACKJACK GAME</title>
+</head>
+
+<body>
+    <h1>BLACKJACK GAME</h1>
+    <p id="message-el">Want to play rounds!?</p>
+    <p id="sum-el">Sum :</p>
+    <p id="cards-ed">Cards :</p>
+    <button onclick="gameStart()">Start Game</button>
+    <button onclick="newCard()">New Cards</button>
+    <p id="player-el"></p>
+    <script>
+        let cards = []
+        let sum = 0
+        let hasBlackJack = false
+        isAlive = false
+        let message = ' '
+        let messageEl = document.getElementById('message-el')
+        let sumEl = document.getElementById('sum-el')
+        let cardsEd = document.getElementById('cards-ed')
+        let player = {
+            name: "shal",
+            points: 150
+
+        }
+
+        let playerEl = document.getElementById("player-el")
+        playerEl.textContent = player.name + ": $" + player.points
+        console.log(cards)
+
+        function getRandomCard() {
+            let getRandom = Math.floor(Math.random() * 13 + 1)
+            if (getRandom > 10) {
+                return 10
+            } else if (getRandom === 1) {
+                return 11
+            } else {
+                return getRandom
+            }
+
+        }
+
+        function gameStart() {
+            isAlive = true
+            let randomNum1 = getRandomCard()
+            let randomNum2 = getRandomCard()
+            cards = [randomNum1, randomNum2]
+            sum = randomNum1 + randomNum2
+            renderStart()
+        }
+
+        function renderStart() {
+            cardsEd.textContent = "Cards: "
+            for (let i = 0; i < cards.length; i++)
+                cardsEd.textContent += cards[i] + " "
+            sumEl.textContent = "Sum: " + sum
+
+
+
+
+            if (sum < 21) {
+                message = "Do you want a new card? 🥳"
+            } else if (sum === 21) {
+                message = "woohooo, You've BLackjack 🤩"
+
+                hasBlackJack = true
+            } else {
+                message = "oh no..  You're out of the game 😥 "
+                isAlive = false
+            }
+
+            messageEl.textContent = message
+
+        }
+
+        function newCard() {
+            if (isAlive === true && hasBlackJack === false) {
+
+                console.log("Drawing a new card from the deck!")
+                let card = getRandomCard()
+                sum += card
+                cards.push(card)
+                console.log(cards)
+                renderStart()
+            }
+        }
+    </script>
+</body>
+
+</html>
